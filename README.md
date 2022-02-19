@@ -2,6 +2,46 @@
 reactive-js is a vanilla JavaScript library for building state based user interaces.
 
 ## Usage ##
+### Components ###
+All components must follow this basic pattern:
+```js
+function myComponent (props) { // props param always required
+  init(props);
+  
+  // must always return valid vanilla HTML
+  return `<div></div>`;
+}
+```
+
+
+### init ###
+Init must always be the first line of a component. You can specify a unique ID as a DOM ID reference, or component reference for later.
+This is useful when you want to reference / change the state of a component inside a different component.
+```js
+init(props, "myCustomRef", callback);
+```
+
+
+### References ###
+All props must have a unique ```ref``` value.
+
+To generate a new reference:
+```js
+const ref = newRef();
+
+// usage:
+root(myComponent, { ref });
+```
+
+
+### Root ###
+Specify the root component to render, all other components must be children of the root.
+```js
+root(component, props);
+```
+
+
+## Example ##
 
 ```js
 function button (props) {
